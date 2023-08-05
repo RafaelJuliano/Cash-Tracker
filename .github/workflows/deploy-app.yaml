@@ -7,6 +7,9 @@ on:
 
 jobs:
   deploy-dev:
+    defaults:
+      run:
+        working-directory: ./apps/cash-track-be
     if: github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
     strategy:
