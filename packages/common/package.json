@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Common utils",
   "main": "src/index.ts",
-  "type": "module",
   "scripts": {
     "test": "cross-env NODE_ENV=test jest --detectOpenHandles --forceExit",
     "test:coverage": "cross-env NODE_ENV=test jest --detectOpenHandles --forceExit --coverage",

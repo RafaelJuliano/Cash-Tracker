@@ -1,1 +1,1 @@
-export * from './utils'
+export * from './lambda-utils'
