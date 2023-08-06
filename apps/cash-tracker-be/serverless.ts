@@ -1,5 +1,8 @@
 import type { AWS } from '@serverless/typescript'
-import functions from './handlers'
+import functions from './src/handlers'
+import { Ssm } from './infra'
+
+const ssm = new Ssm()
 
 const serverlessConfiguration: AWS = {
   service: 'cash-tracker-be',
@@ -14,6 +17,11 @@ const serverlessConfiguration: AWS = {
       ENV: '${self:provider.stage}',
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
+    },
+    iam: {
+      role: {
+        statements: [...ssm.getAllRoles()],
+      },
     },
   },
   functions,

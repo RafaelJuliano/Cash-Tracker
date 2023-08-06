@@ -1,6 +1,6 @@
 const ok = () => {
   return {
-    statusCode: 200
+    statusCode: 202
   }
 }
 
