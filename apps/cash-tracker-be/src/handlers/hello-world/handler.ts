@@ -1,5 +1,5 @@
 import { APIGatewayProxyEventV2 } from 'aws-lambda';
-import { Response } from '@cash-tracker/common'
+import { Response, httpMidiffy } from '@cash-tracker/common'
 import { getCollection } from '../../providers/mongoDbProvider';
 import { ObjectId } from 'mongodb';
 
@@ -9,7 +9,6 @@ const handler = async (event: APIGatewayProxyEventV2) => {
   const collectionName = 'hello-world'
   const helloWorldCollection = getCollection<HelloWorld>(collectionName)
   const query = { message: { $exists: true } }
-
   const records = await helloWorldCollection.find(
     query
     , {
@@ -21,8 +20,8 @@ const handler = async (event: APIGatewayProxyEventV2) => {
   const [{ message }] = records
 
   return Response.success({
-    message
+    message,
   })
 }
 
-export const main = handler
+export const main = httpMidiffy(handler)

@@ -26,6 +26,9 @@
   "homepage": "https://github.com/RafaelJuliano/Cash-Tracker#readme",
   "dependencies": {
     "@cash-tracker/common": "file:../../packages/common",
+    "@middy/core": "^4.5.5",
+    "@middy/http-cors": "^4.5.5",
+    "@middy/http-json-body-parser": "^4.5.5",
     "mongodb": "^5.7.0"
   },
   "devDependencies": {

@@ -11,7 +11,7 @@ export default {
     {
       httpApi: {
         path: '/hello-world',
-        method: 'GET',
+        method: 'POST',
       },
     },
   ],
