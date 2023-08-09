@@ -1,1 +1,2 @@
-export * from './handleUnknowErrors'
+export { handleUnknowErrors } from './handleUnknowErrors'
+export { withXApiKey } from './withXApiKey'

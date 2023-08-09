@@ -10,17 +10,17 @@ export const handleUnknowErrors = (): Middleware => {
           statusCode: error.statusCode,
           body: JSON.stringify({
             message: error.message,
-            ...error.body
-          })
+            ...error.body,
+          }),
         }
       } else {
         request.response = {
           statusCode: 500,
           body: JSON.stringify({
-            message: 'Oops something went wrong. Please try again later.'
-          })
+            message: 'Oops something went wrong. Please try again later.',
+          }),
         }
       }
-    }
+    },
   }
 }
