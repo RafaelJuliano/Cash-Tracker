@@ -40,7 +40,9 @@ const serverlessConfiguration: AWS = {
     'serverless-offline-ssm': {
       stages: ['local'],
       ssm: {
-        '/sls/local/example': 'test',
+        '/local/sls/mongodb/cash-tracker':
+          'mongodb+srv://<username>:<password>@cluster.mongodb.net/?retryWrites=true&w=majority',
+        '/local/sls/cash-tracker/x-api-key': 'abcde12345',
       },
     },
   },

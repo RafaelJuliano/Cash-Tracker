@@ -24,7 +24,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18.x'
-      - name: Install common packges
+
+      - name: Install common packages
         run: npm install
         working-directory: packages/common
 
