@@ -30,7 +30,7 @@
     "ts-node": "10.9.1",
     "typescript": "5.1.6"
   },
-  "peerDependencies": {
+  "dependencies": {
     "@middy/core": "^4.5.5",
     "@middy/http-cors": "^4.5.5",
     "@middy/http-json-body-parser": "^4.5.5",
