@@ -4,7 +4,7 @@ const config: Config = {
   clearMocks: true,
   collectCoverage: true,
   coverageDirectory: 'coverage',
-  coveragePathIgnorePatterns: ['/node_modules/'],
+  coveragePathIgnorePatterns: ['/node_modules/', '__tests__'],
   coverageProvider: 'babel',
   moduleDirectories: ['node_modules'],
   testMatch: ['**/__tests__/**/*.test.[jt]s?(x)'],
