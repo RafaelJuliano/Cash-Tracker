@@ -1,6 +1,6 @@
 import middy from '@middy/core'
 import type { APIGatewayProxyEventV2, Context } from 'aws-lambda'
-import type { Middleware } from '../../middify'
+import type { Middleware } from '../lambda-utils/middify'
 
 export const testMidiffy = (
   handler: (event: APIGatewayProxyEventV2) => Promise<unknown>,
@@ -38,8 +38,8 @@ export const createContext = (): Context => {
     logGroupName: '',
     logStreamName: '',
     getRemainingTimeInMillis: () => 1,
-    done: () => {},
-    fail: () => {},
-    succeed: () => {},
+    done: () => { },
+    fail: () => { },
+    succeed: () => { },
   }
 }

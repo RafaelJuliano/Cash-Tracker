@@ -1,6 +1,6 @@
 import type { APIGatewayProxyEventV2 } from 'aws-lambda'
 import { withXApiKey } from '../withXApiKey'
-import { createContext, createRequest, testMidiffy } from './testUtils'
+import { createContext, createRequest, testMidiffy } from '../../../utils/testUtils'
 import { UnauthorizedException } from '../../../exceptions'
 
 describe('middlewares - withXApiKey', () => {

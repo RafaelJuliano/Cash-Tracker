@@ -1,9 +1,9 @@
 import type { APIGatewayProxyEventV2 } from 'aws-lambda'
-import { createContext, createRequest, testMidiffy } from './testUtils'
+import { createContext, createRequest, testMidiffy } from '../../../utils/testUtils'
 import { HttpException } from '../../../exceptions'
 import { handleUnknowErrors } from '../handleUnknowErrors'
 
-describe('middlewares - withXApiKey', () => {
+describe('middlewares - handleUnknowErrors', () => {
   const context = createContext()
 
   it('should return internal server errir if unknow error', async () => {
