@@ -25,9 +25,13 @@ jobs:
         with:
           node-version: '18.x'
 
-      - name: Install packages
+      - name: Install common packages
         run: npm install
+        working-directory: packages/common
 
+      - name: Install app packages
+        run: npm install
+        
       - name: Configure credentials
         run: |
           npx serverless config credentials --provider aws --key $AWS_ACCESS_KEY_ID --secret $AWS_SECRET_ACCESS_KEY

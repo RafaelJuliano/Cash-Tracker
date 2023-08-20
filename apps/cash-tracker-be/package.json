@@ -4,7 +4,7 @@
   "description": "A financial management system for tracking of accounts payable and receivable.",
   "main": "serverless.ts",
   "scripts": {
-    "start": "cross-env NODE_ENV=test serverless offline start --stage=dev",
+    "start": "cross-env NODE_ENV=test serverless offline start --stage=local",
     "test": "cross-env NODE_ENV=test jest --detectOpenHandles --forceExit",
     "test:coverage": "cross-env NODE_ENV=test jest --detectOpenHandles --forceExit --coverage",
     "lint": "eslint ./ --ext .ts --ext .js",

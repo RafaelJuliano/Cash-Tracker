@@ -6,6 +6,7 @@ export default {
   environment: {
     MONGO_DB_URI: '${ssm:/${self:provider.stage}/sls/mongodb/cash-tracker}',
     MONGO_DATABASE: 'cashtracker-${self:provider.stage}',
+    X_API_KEY: '${ssm:/${self:provider.stage}/sls/cash-tracker/x-api-key}',
   },
   events: [
     {
