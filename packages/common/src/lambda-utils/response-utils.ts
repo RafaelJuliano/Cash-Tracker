@@ -1,6 +1,6 @@
 const ok = () => {
   return {
-    statusCode: 202
+    statusCode: 202,
   }
 }
 
@@ -13,5 +13,5 @@ const success = (body: object) => {
 
 export const Response = {
   ok,
-  success
+  success,
 }
