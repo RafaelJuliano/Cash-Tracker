@@ -24,4 +24,4 @@ export class AccountPayableModel {
   updatedAt: Date
 
   deleted: boolean
-} 
+}

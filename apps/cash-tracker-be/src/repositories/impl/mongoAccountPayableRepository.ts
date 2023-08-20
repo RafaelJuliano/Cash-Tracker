@@ -1,19 +1,20 @@
-import type { AccountPayableModel } from '../../models/AccountPayable';
-import type { AccountPayableRepository } from '../accountPayableRepository';
-import { getCollection } from '../../providers/mongoDbProvider';
+import type { AccountPayableModel } from '../../models/AccountPayable'
+import type { AccountPayableRepository } from '../accountPayableRepository'
+import { getCollection } from '../../providers/mongoDbProvider'
 
 const accountPayableCollection = process.env.ACCOUNTS_PAYABLES_COLLECTION
 
 export const mongoAccountPayableRepository: AccountPayableRepository = {
-
-  create: async (accountPayableModel: Omit<AccountPayableModel, '_id'>): Promise<AccountPayableModel> => {
+  create: async (
+    accountPayableModel: Omit<AccountPayableModel, '_id'>,
+  ): Promise<AccountPayableModel> => {
     const collection = getCollection<AccountPayableModel>(accountPayableCollection)
 
     const res = await collection.insertOne(accountPayableModel)
 
     return {
       _id: res.insertedId,
-      ...accountPayableModel
+      ...accountPayableModel,
     }
-  }
+  },
 }

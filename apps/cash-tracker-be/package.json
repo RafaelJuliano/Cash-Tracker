@@ -4,7 +4,7 @@
   "description": "A financial management system for tracking of accounts payable and receivable.",
   "main": "serverless.ts",
   "scripts": {
-    "start": "cross-env NODE_ENV=test serverless offline start --stage=local",
+    "start": "cross-env NODE_ENV=test serverless offline start --stage=dev",
     "test": "cross-env NODE_ENV=test jest --detectOpenHandles --forceExit",
     "test:coverage": "cross-env NODE_ENV=test jest --detectOpenHandles --forceExit --coverage",
     "lint": "eslint ./ --ext .ts --ext .js",
@@ -27,6 +27,7 @@
   "dependencies": {
     "@cash-tracker/common": "file:../../packages/common",
     "mongodb": "5.7.0",
+    "uuid": "^9.0.0",
     "yup": "1.2.0"
   },
   "devDependencies": {
@@ -38,7 +39,7 @@
     "@types/aws-lambda": "8.10.119",
     "@types/jest": "29.5.3",
     "@types/node": "20.4.8",
-    "@types/uuid": "9.0.2",
+    "@types/uuid": "^9.0.2",
     "@typescript-eslint/eslint-plugin": "6.2.1",
     "@typescript-eslint/parser": "6.2.1",
     "aws-lambda": "1.0.7",

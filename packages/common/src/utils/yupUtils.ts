@@ -17,3 +17,7 @@ export const handleYupValidationError = (error: Error) => {
   }
   throw error
 }
+
+export const yup = {
+  ...Yup,
+}

@@ -1,7 +1,7 @@
 import { APIGatewayProxyEventV2 } from 'aws-lambda'
 import { Response, httpMidiffy, validateBody, withXApiKey } from '@cash-tracker/common'
 import { createAccountPayableSchema } from './schema'
-import { execute } from '../../../useCases/accountsPayables/createUseCase'
+import { execute } from '../../../useCases/accountsPayables/create'
 import { CreateAccountPayableDTO } from '../../../dtos/createAccountPayableDto'
 
 const handler = async (event: APIGatewayProxyEventV2) => {
