@@ -1,13 +1,13 @@
 export enum Domain {
   ACCOUNT_PAYABLE = 'ACCOUNT_PAYABLE',
   ACCOUNT_RECEIVALBE = 'ACCOUNT_RECEIVALBE',
-  CUSTOMER = 'CUSTOMER'
+  CUSTOMER = 'CUSTOMER',
 }
 
 export enum DomainPrefix {
   ACCOUNT_PAYABLE = 'accp',
   ACCOUNT_RECEIVALBE = 'accr',
-  CUSTOMER = 'cust'
+  CUSTOMER = 'cust',
 }
 
 export type DomainId = {

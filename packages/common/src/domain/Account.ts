@@ -4,7 +4,7 @@ import type { Domain, DomainId } from './Domain'
 export enum AccountStatus {
   PENDING = 'pending',
   OVERDUE = 'overdue',
-  PAID = 'paid'
+  PAID = 'paid',
 }
 
 export interface Account {
