@@ -1,2 +1,6 @@
 export { handleUnknowErrors } from './handleUnknowErrors'
 export { withXApiKey } from './withXApiKey'
+export { validateBody } from './validateBody'
+export { validateQueryStringParameters } from './validateQueryStringParameters'
+export { validatePathParameters } from './validatePathParameters'
+export { validateEvent } from './validateEvent'

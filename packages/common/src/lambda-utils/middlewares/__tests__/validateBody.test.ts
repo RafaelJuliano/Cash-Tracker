@@ -1,10 +1,10 @@
 import * as yup from 'yup'
 import type { APIGatewayProxyEventV2 } from 'aws-lambda'
 import { createContext, createRequest, testMidiffy } from '../../../utils/testUtils'
-import { validateEvent } from '../validateEvent'
+import { validateBody } from '../validateBody'
 import { BadRequestException } from '../../../exceptions/BadRequestException'
 
-describe('middlewares - validateEvent', () => {
+describe('middlewares - validateBody', () => {
   const handler = (_event: APIGatewayProxyEventV2): Promise<unknown> => {
     return Promise.resolve()
   }
@@ -12,13 +12,10 @@ describe('middlewares - validateEvent', () => {
   const context = createContext()
 
   const schema = yup.object({
-    body: yup.string().required(),
-    headers: yup.object().required(),
-    queryStringParameters: yup.object().required(),
-    pathParameters: yup.object().required(),
+    key: yup.string().required(),
   })
 
-  const main = testMidiffy(handler, validateEvent(schema))
+  const main = testMidiffy(handler, validateBody(schema))
 
   const validate = async (event: APIGatewayProxyEventV2, errors?: unknown) => {
     try {
@@ -34,24 +31,24 @@ describe('middlewares - validateEvent', () => {
     }
   }
 
-  it('should validate an event', async () => {
+  it('should validate a json body', async () => {
     const request = createRequest({
-      body: '{}',
-      queryStringParameters: {},
-      pathParameters: {},
-      headers: {},
+      body: '{"key":"string"}',
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
     expect(await validate(request)).toBeTruthy()
   })
 
-  it('should validate an invalid event', async () => {
-    const request = createRequest()
+  it('should validate an invalid json body', async () => {
+    const request = createRequest({
+      body: '{}',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
     delete request.headers
-    await validate(request, [
-      'body is a required field',
-      'headers is a required field',
-      'queryStringParameters is a required field',
-      'pathParameters is a required field',
-    ])
+    await validate(request, ['key is a required field'])
   })
 })
