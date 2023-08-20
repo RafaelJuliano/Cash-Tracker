@@ -6,6 +6,6 @@ export interface CreateAccountPayableDTO {
   customer?: DomainId[Domain.CUSTOMER]
   originalAmount: number
   rebate?: number
-  dueDate: Date
+  dueDate: string
   barcode?: string
 }

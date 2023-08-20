@@ -1,4 +1,4 @@
-export type * from './domain'
+export * from './domain'
 export * from './lambda-utils'
 export * from './lambda-utils'
 export * from './exceptions'

@@ -1,2 +1,2 @@
-export type * from './Account'
-export type * from './Domain'
+export * from './Account'
+export * from './Domain'
