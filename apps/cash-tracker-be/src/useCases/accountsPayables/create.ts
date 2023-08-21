@@ -5,8 +5,9 @@ import {
   NotFoundException,
   createDomainPrefix,
 } from '@cash-tracker/common'
+import startOfDay from 'date-fns/startOfDay'
 import { CreateAccountPayableDTO } from '../../dtos/createAccountPayableDto'
-import { mongoAccountPayableRepository } from '../../repositories/impl/mongoAccountPayableRepository'
+import { mongoAccountPayableRepository } from '../../repositories'
 import { AccountPayableModel } from '../../models/AccountPayable'
 
 export const execute = async (
@@ -21,7 +22,7 @@ export const execute = async (
     id: createDomainPrefix(Domain.ACCOUNT_PAYABLE),
     createdAt: createdDate,
     updatedAt: createdDate,
-    dueDate: new Date(createAccountPayableDto.dueDate),
+    dueDate: startOfDay(new Date(createAccountPayableDto.dueDate)),
     deleted: false,
   }
 
@@ -39,5 +40,5 @@ const checkCustomer = async (customer: AccountPayable['customer']): Promise<void
 }
 
 const getStatus = (dueDate: Date): AccountStatus => {
-  return dueDate > new Date() ? AccountStatus.PENDING : AccountStatus.OVERDUE
+  return dueDate >= startOfDay(new Date()) ? AccountStatus.PENDING : AccountStatus.OVERDUE
 }
