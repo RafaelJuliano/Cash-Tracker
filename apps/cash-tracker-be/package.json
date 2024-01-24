@@ -26,7 +26,7 @@
   "homepage": "https://github.com/RafaelJuliano/Cash-Tracker#readme",
   "dependencies": {
     "@cash-tracker/common": "file:../../packages/common",
-    "mongodb": "^5.7.0"
+    "mongodb": "^5.8.0"
   },
   "devDependencies": {
     "@aws-sdk/client-lambda": "3.385.0",
