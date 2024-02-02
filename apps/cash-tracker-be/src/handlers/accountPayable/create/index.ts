@@ -1,5 +1,5 @@
 import { handlerPath } from '@cash-tracker/common'
-import { ACCOUNTS_PAYABLE_BASE_URL } from '../shared/constants'
+import { ACCOUNTS_PAYABLE_BASE_URL } from '../../shared/constants'
 
 export default {
   handler: `${handlerPath(__dirname)}/handler.main`,

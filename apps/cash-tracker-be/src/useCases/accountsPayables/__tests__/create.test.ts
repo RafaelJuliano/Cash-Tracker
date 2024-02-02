@@ -25,7 +25,7 @@ describe('Accounts Payable UseCase - create', () => {
     mocked(createDomainPrefix).mockReturnValue(accpId)
   })
 
-  const accpId = 'accp_12345'
+  const accpId = createDomainPrefix(Domain.ACCOUNT_PAYABLE)
 
   const createDto = (): CreateAccountPayableDTO => ({
     name: 'name',

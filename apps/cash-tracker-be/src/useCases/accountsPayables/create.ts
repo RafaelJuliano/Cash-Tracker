@@ -1,44 +1,43 @@
 import {
   AccountPayable,
-  AccountStatus,
   Domain,
   NotFoundException,
   createDomainPrefix,
+  getUtcDate,
 } from '@cash-tracker/common'
 import startOfDay from 'date-fns/startOfDay'
 import { CreateAccountPayableDTO } from '../../dtos/createAccountPayableDto'
 import { mongoAccountPayableRepository } from '../../repositories'
 import { AccountPayableModel } from '../../models/AccountPayable'
+import { getAccountStatus } from './accountUtils'
 
 export const execute = async (
   createAccountPayableDto: CreateAccountPayableDTO,
 ): Promise<AccountPayable> => {
   await checkCustomer(createAccountPayableDto.customer)
 
-  const createdDate = new Date()
+  const today = getUtcDate()
 
   const accountPayableModel: AccountPayableModel = {
     ...createAccountPayableDto,
     id: createDomainPrefix(Domain.ACCOUNT_PAYABLE),
-    createdAt: createdDate,
-    updatedAt: createdDate,
-    dueDate: startOfDay(new Date(createAccountPayableDto.dueDate)),
+    createdAt: today,
+    updatedAt: today,
+    dueDate: startOfDay(getUtcDate(createAccountPayableDto.dueDate)),
     deleted: false,
   }
 
   const accountPayable = await mongoAccountPayableRepository.create(accountPayableModel)
   return {
     ...accountPayable,
-    status: getStatus(accountPayable.dueDate),
-  } as AccountPayable
-}
-
-const checkCustomer = async (customer: AccountPayable['customer']): Promise<void> => {
-  if (customer) {
-    throw new NotFoundException(`customer ${customer} does not exists.`)
+    status: getAccountStatus(accountPayable.dueDate),
   }
 }
 
-const getStatus = (dueDate: Date): AccountStatus => {
-  return dueDate >= startOfDay(new Date()) ? AccountStatus.PENDING : AccountStatus.OVERDUE
+const checkCustomer = async (customer: AccountPayable['customer']): Promise<void> => {
+  // There is no Customer table yet.
+  // TODO: Check if customer exists.
+  if (customer) {
+    throw new NotFoundException(`customer ${customer} does not exists.`)
+  }
 }

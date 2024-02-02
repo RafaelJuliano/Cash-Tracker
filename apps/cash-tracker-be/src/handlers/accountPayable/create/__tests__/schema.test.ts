@@ -26,6 +26,11 @@ describe('Schema - CreateAccountPayableSchema', () => {
     expect(validate(createValidDto())).toBeTruthy()
   })
 
+  it('should validate only required fields', () => {
+    const { name, originalAmount, dueDate } = createValidDto()
+    expect(validate({ name, originalAmount, dueDate })).toBeTruthy()
+  })
+
   it.each(['name', 'originalAmount', 'dueDate'])(
     'should validate required fields',
     value => {
