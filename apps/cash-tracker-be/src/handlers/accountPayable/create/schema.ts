@@ -1,5 +1,5 @@
 import { Domain, yup } from '@cash-tracker/common'
-import { yupDateTest, yupDomainIdTest } from '../shared/schema'
+import { yupDateTest, yupDomainIdTest } from '../../shared/schema'
 
 export const createAccountPayableSchema = yup
   .object()
