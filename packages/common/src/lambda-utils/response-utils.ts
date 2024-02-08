@@ -7,7 +7,7 @@ const ok = () => {
 const success = (body: object) => {
   return {
     statusCode: 200,
-    body: JSON.stringify(body),
+    body,
   }
 }
 
