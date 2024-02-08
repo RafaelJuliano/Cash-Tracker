@@ -4,11 +4,11 @@ const ok = () => {
   }
 }
 
-const success = (body: object, contentType: string) => {
+const success = (body: object, contentType?: string) => {
   return {
     statusCode: 200,
     body: JSON.stringify(body),
-    header: {
+    headers: {
       'content-type': contentType || 'application/json',
     },
   }
