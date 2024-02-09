@@ -14,6 +14,9 @@ export const handleUnknowErrors = (): Middleware => {
           }),
         }
       } else {
+        // TODO: implement Logger
+        // eslint-disable-next-line no-console
+        console.log(error)
         request.response = {
           statusCode: 500,
           body: JSON.stringify({

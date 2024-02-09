@@ -3,15 +3,19 @@ import {
   Domain,
   NotFoundException,
   createDomainPrefix,
+  getStartOfTodayUTC,
+  getUtcDate,
 } from '@cash-tracker/common'
-import { startOfDay, subDays } from 'date-fns'
 import { mocked } from 'jest-mock'
+import { startOfDay, subDays } from 'date-fns'
 import { execute } from '../create'
 import { CreateAccountPayableDTO } from '../../../dtos/createAccountPayableDto'
 import { mongoAccountPayableRepository } from '../../../repositories'
 
 jest.mock('@cash-tracker/common', () => ({
   ...jest.requireActual('@cash-tracker/common'),
+  getUtcDate: jest.fn(),
+  getStartOfTodayUTC: jest.fn(),
   createDomainPrefix: jest.fn(),
 }))
 jest.mock('../../../repositories')
@@ -21,7 +25,9 @@ describe('Accounts Payable UseCase - create', () => {
   const date = new Date('2023-08-23T00:00:00.000+00:00')
   beforeEach(() => {
     jest.useFakeTimers().setSystemTime(date)
+    mocked(getUtcDate).mockReturnValue(date)
     mocked(startOfDay).mockReturnValue(date)
+    mocked(getStartOfTodayUTC).mockReturnValue(date)
     mocked(createDomainPrefix).mockReturnValue(accpId)
   })
 

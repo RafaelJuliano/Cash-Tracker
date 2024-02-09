@@ -1,5 +1,10 @@
 import { Domain, createDomainPrefix, yup, yupValidate } from '@cash-tracker/common'
-import { yupDateTest, yupDomainIdTest } from '../schema'
+import {
+  yupDateTest,
+  yupDomainIdTest,
+  yupNumberStringSchema,
+  yupProjectionTest,
+} from '../schema'
 
 describe('Schema - Shared', () => {
   const validate = (schema, dto: unknown, errors?: string[]) => {
@@ -44,6 +49,45 @@ describe('Schema - Shared', () => {
       const schema = yup.string().test(yupDateTest())
 
       validate(schema, 'January 1st', ['this must be a valid date string'])
+    })
+  })
+
+  describe('yupProjectionTest', () => {
+    const validFields = ['fieldOne', 'fieldTwo']
+    it('Should validate a valid projection string', () => {
+      const schema = yup.string().test(yupProjectionTest(validFields))
+
+      expect(validate(schema, validFields.join(','))).toBeTruthy()
+      expect(validate(schema, undefined)).toBeTruthy()
+    })
+
+    it('Should validate an invalid projection string', () => {
+      const schema = yup.string().test(yupProjectionTest(validFields))
+
+      validate(schema, 'invalid', [
+        `this should contain only the following values: ${validFields.join(', ')}`,
+      ])
+    })
+  })
+
+  describe('yupNumberStringSchema', () => {
+    it('Should validate a valid number string', () => {
+      const schema = yupNumberStringSchema
+
+      expect(validate(schema, '12354')).toBeTruthy()
+      expect(validate(schema, undefined)).toBeTruthy()
+    })
+
+    it('Should validate an invalid number string', () => {
+      const schema = yupNumberStringSchema
+
+      validate(schema, 'invalid', ['this should contain only digits'])
+    })
+
+    it('Should transform the value from string to number', () => {
+      const cast = yupNumberStringSchema.cast('10')
+
+      expect(cast).toStrictEqual(10)
     })
   })
 })

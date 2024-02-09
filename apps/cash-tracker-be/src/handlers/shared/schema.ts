@@ -31,3 +31,42 @@ export const yupDateTest = (): yup.TestConfig<string, yup.AnyObject> => {
     },
   }
 }
+
+export const yupNumberStringTest = (): yup.TestConfig<string, yup.AnyObject> => {
+  return {
+    name: 'Digits Only',
+    message: '${path} should contain only digits',
+    test: (value: string) => !value || /^\d+$/.test(value),
+  }
+}
+
+export const yupNumberStringSchema = yup
+  .mixed()
+  .test(yupNumberStringTest())
+  .transform(value => Number(value))
+
+export const yupProjectionTest = (
+  fields: string[],
+): yup.TestConfig<string, yup.AnyObject> => {
+  return {
+    name: 'Projection',
+    message: `${'${path}'} should contain only the following values: ${fields.join(
+      ', ',
+    )}`,
+    test: (value: string) => {
+      if (value) {
+        const keys = value.split(',')
+        let noInvalidKeys = true
+
+        keys.forEach(key => {
+          if (!fields.includes(key)) {
+            noInvalidKeys = false
+          }
+        })
+
+        return noInvalidKeys
+      }
+      return true
+    },
+  }
+}

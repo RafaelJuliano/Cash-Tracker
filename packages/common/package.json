@@ -41,6 +41,7 @@
     "typescript": "5.1.6"
   },
   "dependencies": {
+    "@date-fns/utc": "^1.1.1",
     "@middy/core": "4.5.5",
     "@middy/http-cors": "4.5.5",
     "@middy/http-json-body-parser": "4.5.5",
