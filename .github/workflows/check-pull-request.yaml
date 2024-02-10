@@ -1,4 +1,4 @@
-name: serverless-deploy
+name: Check Pull Request
 
 on:
   pull_request:
@@ -21,11 +21,11 @@ jobs:
         with:
           node-version: '18.x'
 
-      - name: Install common packages
+      - name: Install packages - common packages
         run: npm install
         working-directory: packages/common
 
-      - name: Install app packages
+      - name: Install packages - cash-tracker-be
         run: npm install
         working-directory: apps/cash-tracker-be
 
@@ -33,7 +33,7 @@ jobs:
         run: npm run lint
         working-directory: packages/common
 
-      - name: Run lint app cash-tracker-be
+      - name: Run lint - cash-tracker-be
         run: npm run lint
         working-directory: apps/cash-tracker-be
 
