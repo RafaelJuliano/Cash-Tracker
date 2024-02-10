@@ -27,4 +27,9 @@ export const mongoAccountPayableRepository: AccountPayableRepository = {
       id,
     })
   },
+  delete: async (id: DomainId[Domain.ACCOUNT_PAYABLE]): Promise<void> => {
+    const collection = getCollection<AccountPayableModel>(accountPayableCollection)
+
+    await collection.deleteOne({ id })
+  },
 }
