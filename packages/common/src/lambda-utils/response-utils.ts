@@ -14,7 +14,14 @@ const success = (body: object, contentType?: string) => {
   }
 }
 
+const noContent = () => {
+  return {
+    statusCode: 204,
+  }
+}
+
 export const Response = {
   ok,
   success,
+  noContent,
 }
