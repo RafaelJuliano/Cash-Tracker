@@ -1,0 +1,48 @@
+name: Check Pull Request
+
+on:
+  pull_request:
+    branches: 
+     - main
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: 
+         - 18.x
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Configure Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+
+      - name: Install packages - common packages
+        run: npm install
+        working-directory: packages/common
+
+      - name: Install packages - cash-tracker-be
+        run: npm install
+        working-directory: apps/cash-tracker-be
+
+      - name: Run lint - common packages
+        run: npm run lint
+        working-directory: packages/common
+
+      - name: Run lint - cash-tracker-be
+        run: npm run lint
+        working-directory: apps/cash-tracker-be
+
+      - name: Run test - common packages
+        run: npm run test
+        working-directory: packages/common
+
+      - name: Run test app cash-tracker-be
+        run: npm run test
+        working-directory: apps/cash-tracker-be
+ 
+      

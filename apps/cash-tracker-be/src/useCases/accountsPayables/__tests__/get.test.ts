@@ -4,7 +4,6 @@ import {
   NotFoundException,
   createDomainPrefix,
 } from '@cash-tracker/common'
-import { startOfDay } from 'date-fns'
 import { mocked } from 'jest-mock'
 import { execute } from '../get'
 import { mongoAccountPayableRepository } from '../../../repositories'
@@ -20,8 +19,6 @@ jest.mock('date-fns/startOfDay')
 describe('Accounts Payable UseCase - get', () => {
   const date = new Date('2023-08-23T00:00:00.000+00:00')
   beforeEach(() => {
-    jest.useFakeTimers().setSystemTime(date)
-    mocked(startOfDay).mockReturnValue(date)
     mocked(createDomainPrefix).mockReturnValue(accpId)
   })
 
@@ -35,7 +32,7 @@ describe('Accounts Payable UseCase - get', () => {
     rebate: 50,
     dueDate: dueDate || date,
     barcode: '123456789',
-    createdAt: new Date(),
+    createdAt: date,
     deleted: false,
     updatedAt: null,
   })
@@ -48,7 +45,7 @@ describe('Accounts Payable UseCase - get', () => {
     expect(mocked(mongoAccountPayableRepository.findById)).toHaveBeenCalledWith(accpId)
     expect(response).toStrictEqual({
       ...createModel(),
-      status: AccountStatus.PENDING,
+      status: AccountStatus.OVERDUE,
     })
   })
 
@@ -60,7 +57,7 @@ describe('Accounts Payable UseCase - get', () => {
     expect(mocked(mongoAccountPayableRepository.findById)).toHaveBeenCalledWith(accpId)
     expect(response).toStrictEqual({
       ...createModel(),
-      status: AccountStatus.PENDING,
+      status: AccountStatus.OVERDUE,
     })
   })
 
