@@ -61,4 +61,9 @@ export const mongoAccountPayableRepository: AccountPayableRepository = {
       .limit(Number(filters.limit) || 10)
       .toArray()
   },
+  delete: async (id: DomainId[Domain.ACCOUNT_PAYABLE]): Promise<void> => {
+    const collection = getCollection<AccountPayableModel>(accountPayableCollection)
+
+    await collection.deleteOne({ id })
+  },
 }
