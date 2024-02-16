@@ -9,20 +9,20 @@ import startOfDay from 'date-fns/startOfDay'
 import { CreateAccountPayableDTO } from '../../dtos/createAccountPayableDto'
 import { mongoAccountPayableRepository } from '../../repositories'
 import { AccountPayableModel } from '../../models/AccountPayable'
-import { getAccountStatus } from './accountUtils'
+import { getAccountStatus } from '../../utils/accountUtils'
 
 export const execute = async (
   createAccountPayableDto: CreateAccountPayableDTO,
 ): Promise<AccountPayable> => {
   await checkCustomer(createAccountPayableDto.customer)
 
-  const today = getUtcDate()
+  const now = getUtcDate()
 
   const accountPayableModel: AccountPayableModel = {
     ...createAccountPayableDto,
     id: createDomainPrefix(Domain.ACCOUNT_PAYABLE),
-    createdAt: today,
-    updatedAt: today,
+    createdAt: now,
+    updatedAt: now,
     dueDate: startOfDay(getUtcDate(createAccountPayableDto.dueDate)),
     deleted: false,
   }

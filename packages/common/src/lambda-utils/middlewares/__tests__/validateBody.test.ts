@@ -51,4 +51,13 @@ describe('middlewares - validateBody', () => {
     delete request.headers
     await validate(request, ['key is a required field'])
   })
+
+  it('should validate undefined body', async () => {
+    const request = createRequest({
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    await validate(request, ['key is a required field'])
+  })
 })

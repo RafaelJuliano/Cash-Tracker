@@ -38,8 +38,8 @@ export const createContext = (): Context => {
     logGroupName: '',
     logStreamName: '',
     getRemainingTimeInMillis: () => 1,
-    done: () => { },
-    fail: () => { },
-    succeed: () => { },
+    done: () => {},
+    fail: () => {},
+    succeed: () => {},
   }
 }

@@ -1,6 +1,6 @@
 import { AccountPayable, Domain, DomainId, NotFoundException } from '@cash-tracker/common'
 import { mongoAccountPayableRepository } from '../../repositories'
-import { getAccountStatus } from './accountUtils'
+import { getAccountStatus } from '../../utils/accountUtils'
 
 export const execute = async (
   id: DomainId[Domain.ACCOUNT_PAYABLE],
