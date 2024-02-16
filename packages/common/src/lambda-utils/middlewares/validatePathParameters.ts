@@ -6,7 +6,7 @@ export const validatePathParameters = (schema: Schema): Middleware => {
   return {
     before: (request: HandlerRequest) => {
       try {
-        yupValidate(schema, request.event.pathParameters)
+        yupValidate(schema, request.event.pathParameters || {})
       } catch (error) {
         handleYupValidationError(error)
       }

@@ -67,6 +67,23 @@ describe('Accounts Payable UseCase - list', () => {
     ])
   })
 
+  it('should not return status if projection does not have status', async () => {
+    const result = [{ name: 'name' }]
+    mocked(mongoAccountPayableRepository.find).mockResolvedValue(result)
+
+    const payload = {
+      showDeleted: false,
+      limit: 0,
+      offset: 0,
+      projection: 'name',
+    }
+
+    const response = await execute(payload)
+
+    expect(mocked(mongoAccountPayableRepository.find)).toHaveBeenCalledWith(payload)
+    expect(response).toStrictEqual(result)
+  })
+
   describe('handleStatusFilter', () => {
     it(`status: ${AccountStatus.OVERDUE}. Should use end of yesterday`, async () => {
       mocked(mongoAccountPayableRepository.find).mockResolvedValue(createModel())

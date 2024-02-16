@@ -10,7 +10,7 @@ import { listAccountPayableSchema } from './schema'
 import { ListAccountPayableDto } from '../../../dtos/listAccountPayableDto'
 
 const handler = async (event: APIGatewayProxyEventV2) => {
-  const filters = listAccountPayableSchema.cast(event.queryStringParameters)
+  const filters = listAccountPayableSchema.cast(event.queryStringParameters || {})
 
   const response = await execute(filters as ListAccountPayableDto)
 

@@ -6,7 +6,7 @@ export const validateQueryStringParameters = (schema: Schema): Middleware => {
   return {
     before: (request: HandlerRequest) => {
       try {
-        yupValidate(schema, request.event.queryStringParameters)
+        yupValidate(schema, request.event.queryStringParameters || {})
       } catch (error) {
         handleYupValidationError(error)
       }

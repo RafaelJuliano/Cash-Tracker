@@ -48,4 +48,9 @@ describe('middlewares - validatePathParameters', () => {
     delete request.headers
     await validate(request, ['key is a required field'])
   })
+
+  it('should validate undefined parameters', async () => {
+    const request = createRequest({})
+    await validate(request, ['key is a required field'])
+  })
 })
