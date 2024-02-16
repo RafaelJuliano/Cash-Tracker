@@ -1,4 +1,3 @@
-import type { ObjectId } from 'mongodb'
 import type { Domain, DomainId } from './Domain'
 
 export enum AccountStatus {
@@ -8,7 +7,6 @@ export enum AccountStatus {
 }
 
 export interface Account {
-  _id?: ObjectId
   id: DomainId[Domain.ACCOUNT_PAYABLE]
   name: string
   status: AccountStatus
@@ -23,4 +21,4 @@ export interface Account {
   deleted: boolean
 }
 
-export interface AccountPayable extends Account { }
+export interface AccountPayable extends Account {}

@@ -11,14 +11,16 @@ import { ListAccountPayableDto } from '../../dtos/listAccountPayableDto'
 
 export const execute = async (
   listAccountDto: ListAccountPayableDto,
-): Promise<Array<AccountPayable>> => {
+): Promise<Array<Partial<AccountPayable>>> => {
   const filters = handleStatusFilter({ ...listAccountDto })
 
   const list = await mongoAccountPayableRepository.find(filters)
 
   return list.map(accountPayable => ({
     ...accountPayable,
-    status: getAccountStatus(accountPayable.dueDate),
+    ...(!filters.projection || filters.projection.split(',').includes('status')
+      ? { status: getAccountStatus(accountPayable.dueDate) }
+      : {}),
   }))
 }
 

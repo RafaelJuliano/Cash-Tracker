@@ -32,7 +32,9 @@ export const mongoAccountPayableRepository: AccountPayableRepository = {
       { projection: { _id: 0 } },
     )
   },
-  find: async (filters: ListAccountPayableDto): Promise<Array<AccountPayableModel>> => {
+  find: async (
+    filters: ListAccountPayableDto,
+  ): Promise<Array<Partial<AccountPayableModel>>> => {
     const collection = getCollection<AccountPayableModel>(accountPayableCollection)
 
     const filter = {

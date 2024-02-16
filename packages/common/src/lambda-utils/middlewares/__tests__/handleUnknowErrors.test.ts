@@ -15,6 +15,9 @@ describe('middlewares - handleUnknowErrors', () => {
     expect(await main(request, context)).toStrictEqual({
       statusCode: 500,
       body: '{"message":"Oops something went wrong. Please try again later."}',
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
   })
 
@@ -29,6 +32,9 @@ describe('middlewares - handleUnknowErrors', () => {
     expect(await main(request, context)).toStrictEqual({
       statusCode,
       body: JSON.stringify({ message }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
   })
 })

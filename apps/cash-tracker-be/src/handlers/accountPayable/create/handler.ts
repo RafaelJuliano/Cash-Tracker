@@ -5,7 +5,7 @@ import { execute } from '../../../useCases/accountsPayables/create'
 import { CreateAccountPayableDTO } from '../../../dtos/createAccountPayableDto'
 
 const handler = async (event: APIGatewayProxyEventV2) => {
-  const body = createAccountPayableSchema.cast(event.body)
+  const body = createAccountPayableSchema.cast(event.body || {})
   const response = await execute(body as CreateAccountPayableDTO)
 
   return Response.success(response)

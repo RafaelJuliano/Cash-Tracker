@@ -12,6 +12,9 @@ export const handleUnknowErrors = (): Middleware => {
             message: error.message,
             ...error.body,
           }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
         }
       } else {
         // TODO: implement Logger
@@ -22,6 +25,9 @@ export const handleUnknowErrors = (): Middleware => {
           body: JSON.stringify({
             message: 'Oops something went wrong. Please try again later.',
           }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
         }
       }
     },
